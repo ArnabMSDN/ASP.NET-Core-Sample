@@ -1,0 +1,39 @@
+﻿@model Sample_Code.Models.EmployeeViewModel
+@{
+    ViewData["Title"] = "Delete";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Modal Body Start-->
+
+<div class="modal-content">
+    <!--Modal Header Start-->
+    <div class="modal-header">
+        <h4 class="modal-title">Edit Employee</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <!--Modal Header End-->
+    <div class="container">
+        <form asp-controller="Employee" asp-action="Delete" method="post">       
+            <div class="modal-body form-horizontal">
+                Are you want to delete @Model.EmpName ?
+            </div>
+            <div class="form-group">
+                @Html.Raw(@ViewBag.Alert)
+            </div>
+            <!--Modal Footer Start-->
+            <div class="modal-footer">
+                <button data-dismiss="modal" id="cancel" class="btn btn-default" type="button">Cancel</button>
+                <button class="btn btn-success relative" id="btnSubmit" type="submit">
+                    <i class="loader"></i>
+                    Submit
+                </button>
+            </div>
+            <!--Modal Footer End-->
+            @*<div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>*@
+        </form>
+    </div>
+
+</div>

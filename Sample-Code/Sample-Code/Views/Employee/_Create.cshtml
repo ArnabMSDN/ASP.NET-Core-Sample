@@ -1,0 +1,57 @@
+﻿@model Sample_Code.Models.EmployeeViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Add Employee</h4>
+<hr />
+<div class="row">   
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Employee" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmpName" class="control-label">Enter employee name</label>
+                <input asp-for="EmpName" class="form-control" />
+                <span asp-validation-for="EmpName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Enter email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label">Enter Phone No.</label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label">Enter Address</label>
+                <textarea asp-for="Address" class="form-control"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankAccountNo" class="control-label">Enter Bank Account No.</label>
+                <input asp-for="BankAccountNo" class="form-control" />
+                <span asp-validation-for="BankAccountNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="SaveEmp" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+ </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            @Html.Raw(@ViewBag.Alert)
+        </div>
+    </div>
+</div>
+
+ <div><a asp-action="Index">Back to List</a></div>
+
+ @section Scripts {
+     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+ }

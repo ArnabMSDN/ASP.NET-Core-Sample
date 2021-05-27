@@ -1,0 +1,61 @@
+﻿@model Paging
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h4>Employees</h4>
+    <hr />
+    <div class="container">
+        <form asp-action="Index" asp-controller="Paging" method="post">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                </tr>
+                @foreach (var employee in Model.items)
+                {
+                    <tr>
+                        <td>@employee.EmpName</td>
+                        <td>@employee.Email</td>
+                        <td>@employee.Address</td>
+                        <td>@employee.Phone</td>
+                    </tr>
+                }
+            </table>
+            <br />
+            <ul class="pagination">
+                <li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        @if (i != Model.CurrentPageIndex)
+                        {
+                            <a href="javascript:PagerClick(@i);">@i</a>
+                        }
+                        else
+                        {
+                            <span>@i</span>
+                        }
+                    }
+                </li>
+            </ul>
+                <input type="hidden" id="hfCurrentPageIndex" name="currentPageIndex" />
+</form>
+    </div>
+    <script type="text/javascript">
+       function PagerClick(index) {
+           document.getElementById("hfCurrentPageIndex").value = index;
+           document.forms[0].submit();
+       }
+    </script>
+</body>
+</html>

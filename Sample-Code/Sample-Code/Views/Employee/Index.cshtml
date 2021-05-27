@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Sample_Code.Models.Employee>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+
+    <h2>Employee List</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="display:none;">ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model == null)
+            {
+                <tr><td colspan="4" align="center">No Data Found</td></tr>
+            }
+            else
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="display:none;">@Html.DisplayFor(modelItem => item.EmpId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EmpName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>
+                            <a
+                               class="btn btn-info popup" data-url="Employee/Edit" data-toggle="modal" data-target="#edit-employee">
+                                <i class="glyphicon glyphicon-pencil"></i>Edit
+                            </a>
+                            <a  data-url="Employee/Delete" data-toggle="modal" data-target="#delete-employee"  class="btn btn-danger delete">
+                                <i class="glyphicon glyphicon-trash"></i>Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.Raw(@ViewBag.Alert)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-secondary float-right" asp-controller="Employee" asp-action="Create">Add New User</a>
+        </div>
+    </div>
+
+</div>
+
+<!--Modal-->
+<div aria-hidden="true" aria-labelledby="edit-employee" role="dialog" tabindex="-1" id="edit-employee" class="modal fade">
+    <div class="modal-dialog">
+    </div>
+</div>
+
+<div aria-hidden="true" aria-labelledby="delete-employee" role="dialog" tabindex="-1" id="delete-employee" class="modal fade">
+    <div class="modal-dialog">      
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/site.js" asp-append-version="true"></script>    
+}
